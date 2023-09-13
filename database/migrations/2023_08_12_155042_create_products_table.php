@@ -17,6 +17,9 @@ return new class extends Migration
             $table->longText('description');
             $table->float('value', 10, 2);
             $table->integer('stock')->default(10);
+            $table->enum('discount', [0, 10, 20, 50])->default(0);
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete("CASCADE");
             $table->timestamps();
         });
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfilleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () { return view('welcome'); });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Auth::routes();
 
@@ -25,4 +28,6 @@ Route::get('/home/{id}', [UserController::class, 'edit'])->name('user.edit');
 
 Route::post('/home/{id}', [UserController::class, 'update'])->name('user.update');
 
-
+Route::resource('profile', ProfilleController::class)
+    ->except('index', 'show', 'destroy')
+    ->names('profile');

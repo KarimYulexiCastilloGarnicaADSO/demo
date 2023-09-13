@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -25,7 +26,10 @@ class HomeController extends Controller
     public function index()
     {
         $users = User::paginate(16);
-        // dd($users);
+
+        //Usuario autenticado ??
+
+        // dd(Auth()->user()->profile);
         return view('home', compact('users'));
     }
 }

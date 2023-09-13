@@ -42,9 +42,15 @@
                                              document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
-                            <a class="dropdown-item" href="#">
-                                Profile
-                            </a>
+                            @if (Auth()->user()->profile)
+                                <a class="dropdown-item" href="{{ route('profile.edit', Auth()->user()->profile)}}">
+                                    Profile actualizar
+                                </a>
+                            @else
+                            <a class="dropdown-item" href="{{ route('profile.create')}}">
+                                    Profile crear
+                                </a>
+                            @endif
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf

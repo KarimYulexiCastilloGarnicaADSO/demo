@@ -5,8 +5,10 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Image;
+use App\Models\Item;
 use App\Models\Product;
 use App\Models\Profile;
+use App\Models\Sale;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -45,6 +47,24 @@ class DatabaseSeeder extends Seeder
                 Image::factory(6)->create(
                     ['product_id' => $product->id]
                 );
+            });
+
+            /**
+             * Creamos 25.000 ventas
+             */
+
+            Sale::factory(250)->create(
+                ['user_id' => $user->id]
+            )->each(function (Sale $sale) {
+
+                /**
+                 * Creamos 12 item por venta
+                 */
+
+                // Item::factory(12)->create(
+                //     ['sale_id' => $sale->id]
+                // );
+                
             });
         });
     }
